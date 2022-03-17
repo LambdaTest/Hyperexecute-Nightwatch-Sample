@@ -96,12 +96,14 @@ The target platform is set to Windows. Please set the *[runson]* key to *[mac]* 
 runson: win
 ```
 
-WebdriverIO Feature files in the 'Features' folder contain the Feature Scenario run on the HyperTest grid. In the example, the Feature file *Features/ToDo.feature* run in parallel on the basis of scenario by using the specified input combinations.
+Nightwatch nightwatch.json file contain the Browser Capabilities to run on the HyperTest grid. In the example, the NightWatch file *BrowserName* run in parallel on the basis of scenario by using the specified input combinations.
 
 ```yaml
 matrix:
-   os: [win]
-   tags: ["@ToDoThree","@ToDoOne","@ToDoTwo"]
+  os: [win]
+  version: ["latest"]
+  browser: ["chrome","firefox","edge"]
+  platform: ["win10"]
 
 ```
 
@@ -109,7 +111,7 @@ The *testSuites* object contains a list of commands (that can be presented in an
 
 ```yaml
 testSuites:
-  - npx wdio wdio.conf.js --cucumberOpts.tagExpression $tags
+  - ./node_modules/.bin/nightwatch -e $browser
 ```
 
 ### Pre Steps and Dependency Caching
@@ -147,7 +149,7 @@ mergeArtifacts: true
 uploadArtefacts:
   [{
     "name": "Reports",
-    "path": ["Reports\\"]
+    "path": ["reports\\"]
   }]
 ```
 
@@ -155,7 +157,7 @@ HyperTest also facilitates the provision to download the artefacts on your local
 
 ## Test Execution
 
-The CLI option *--config* is used for providing the custom HyperTest YAML file (i.e. *HyperExecute-Yaml/.hyperTestMatrix.yaml.yaml*). Run the following command on the terminal to trigger the tests in Feature file Scenario on the HyperTest grid. 
+The CLI option *--config* is used for providing the custom HyperTest YAML file (i.e. *HyperExecute-Yaml/.hyperTestMatrix.yaml*). Run the following command on the terminal to trigger the tests in test file Scenario on the HyperTest grid. 
 
 ```bash
 ./concierge --config --verbose HyperExecute-Yaml/.hyperTestMatrix.yaml
@@ -223,30 +225,23 @@ The *testDiscovery* directive contains the command that gives details of the mod
 
 ```yaml
 testDiscovery:
+  type: raw
   mode: static
-  args:
-    featureFilePaths: Features/
-    frameWork: java
-    specificTags: ["@ToDoOne"]
-    range:
-     limit: 1
-     offset: 0
-  type: automatic
-  
-  testRunnerCommand: npx wdio wdio.conf.js --spec=$test
+  command: grep -B1 'desiredCapabilities' nightwatch.json | sed 's/-//g' | grep -vE 'desiredCapabilities' | grep -vE 'skip_testcases_on_fail' | awk '{print$1}' | sed 's/://g' | sed 's/"//g'
+testRunnerCommand: ./node_modules/.bin/nightwatch -e $test
 ```
 
-Running the above command on the terminal will give a list of Feature Scenario lines that are located in the Project folder:
+Running the above command on the terminal will give a list of browser that are located in the Project folder:
 
 Test Discovery Output:
-Features/ToDo.feature:7
-Features/ToDo.feature:22
-Features/ToDo.feature:37
+edge
+firefox
+chrome
 
 The *testRunnerCommand* contains the command that is used for triggering the test. The output fetched from the *testDiscoverer* command acts as an input to the *testRunner* command.
 
 ```yaml
-testRunnerCommand: npx wdio wdio.conf.js --spec=$test
+testRunnerCommand: ./node_modules/.bin/nightwatch -e $test
 ```
 
 ### Artefacts Management
@@ -261,7 +256,7 @@ mergeArtifacts: true
 uploadArtefacts:
   [{
     "name": "Reports",
-    "path": ["Reports\\"]
+    "path": ["reports\\"]
   }]
   
 ```
