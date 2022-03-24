@@ -1,0 +1,16 @@
+globalTimeout: 90
+testSuiteTimeout: 90
+testSuiteStep: 90
+env:
+  LT_USERNAME: LT_USERNAME
+  LT_ACCESS_KEY: LT_ACCESS_KEY
+pre: 
+      - hyper.bat  
+matrix:
+  os: [win]
+  version: ["latest"]
+  browser: ["chrome","firefox","edge"]
+  platform: ["win10"]
+
+testSuites:
+  - ./node_modules/.bin/nightwatch -e $browser

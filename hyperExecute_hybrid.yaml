@@ -1,0 +1,34 @@
+version: 0.1
+autosplit: true
+
+matrix:
+  os: ["win","linux"]
+
+runson: ${matrix.os}
+
+parallelism:  2
+
+cacheKey: '{{ checksum "package-lock.json" }}'
+cacheDirectories:
+  - node_modules
+
+pre:
+  - npm install
+post:
+  - ls  
+
+uploadArtefacts:
+
+  - name: Reports
+    path: 
+      - reports/
+  
+testDiscovery:
+  type: raw
+  mode: dynamic
+  command: grep -B1 'desiredCapabilities' nightwatch.json | sed 's/-//g' | grep -vE 'desiredCapabilities' | grep -vE 'skip_testcases_on_fail' | awk '{print$1}' | sed 's/://g' | sed 's/"//g'
+
+testRunnerCommand: ./node_modules/.bin/nightwatch -e $test
+env:
+  LT_ACCESS_KEY: ${{.secrets.LT_ACCESS_KEY}}
+  LT_USERNAME: LT_USERNAME
