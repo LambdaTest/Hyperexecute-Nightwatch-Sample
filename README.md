@@ -113,6 +113,8 @@ The *testSuites* object contains a list of commands (that can be presented in an
 testSuites:
   - ./node_modules/.bin/nightwatch -e $browser
 ```
+![image](https://user-images.githubusercontent.com/47247309/160445923-510e95e2-d9b5-42ca-a706-7fe7d0389005.png)
+
 
 ### Pre Steps and Dependency Caching
 
@@ -243,6 +245,8 @@ The *testRunnerCommand* contains the command that is used for triggering the tes
 ```yaml
 testRunnerCommand: ./node_modules/.bin/nightwatch -e $test
 ```
+![image](https://user-images.githubusercontent.com/47247309/160444773-701b3fca-1db1-48c3-9aa6-56a20bdf7dab.png)
+
 
 ### Artefacts Management
 
@@ -260,6 +264,8 @@ uploadArtefacts:
   }]
   
 ```
+![image](https://user-images.githubusercontent.com/47247309/160446954-36c7de8e-0825-48e3-bf0b-e513a44921da.png)
+
 HyperTest also facilitates the provision to download the artefacts on your local machine. To download the artefacts, click on *Artefacts* button corresponding to the associated TestID.
 
 ### Test Execution
@@ -269,6 +275,8 @@ The CLI option *--config* is used for providing the custom HyperTest YAML file (
 ```bash
 ./concierge --config --verbose HyperExecute-Yaml/.hypertestStatic.yaml
 ```
+![image](https://user-images.githubusercontent.com/47247309/160447081-743a7763-da10-47ea-9679-41feadc404ae.png)
+
 
 Visit [HyperTest Automation Dashboard](https://automation.lambdatest.com/hypertest) to check the status of execution
 
