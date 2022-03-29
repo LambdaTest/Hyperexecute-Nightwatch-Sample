@@ -10,20 +10,20 @@ The overall experience helps teams test code and fix issues at a much faster pac
 
 To know more about how HyperTest does intelligent Test Orchestration, do check out [HyperTest Getting Started Guide](https://www.lambdatest.com/support/docs/getting-started-with-hypertest/)
 
-# How to run Selenium automation tests on HyperTest (using WbdriverIO framework)
+# How to run Selenium automation tests on HyperTest (using NightWatch framework)
 
 * [Pre-requisites](#pre-requisites)
    - [Download Concierge](#download-concierge)
    - [Configure Environment Variables](#configure-environment-variables)
    
-* [Matrix Execution with PyTest](#matrix-execution-with-pytest)
+* [Matrix Execution with NightWatch](#matrix-execution-with-NightWatch)
    - [Core](#core)
    - [Pre Steps and Dependency Caching](#pre-steps-and-dependency-caching)
    - [Post Steps](#post-steps)
    - [Artefacts Management](#artefacts-management)
    - [Test Execution](#test-execution)
 
-* [Auto-Split Execution with PyTest](#auto-split-execution-with-pytest)
+* [Auto-Split Execution with NightWatch](#auto-split-execution-with-NightWatch)
    - [Core](#core-1)
    - [Pre Steps and Dependency Caching](#pre-steps-and-dependency-caching-1)
    - [Post Steps](#post-steps-1)
@@ -107,7 +107,7 @@ matrix:
 
 ```
 
-The *testSuites* object contains a list of commands (that can be presented in an array). In the current YAML file, commands for executing the tests are put in an array (with a '-' preceding each item). The npx command is used to run tests in *.feature* files. The tags are mentioned as an array to the *tags* key that is a part of the matrix.
+The *testSuites* object contains a list of commands (that can be presented in an array). In the current YAML file, commands for executing the tests are put in an array (with a '-' preceding each item). The npx command is used to run tests in *spec* files. The tags are mentioned as an array to the *tags* key that is a part of the matrix.
 
 ```yaml
 testSuites:
@@ -131,7 +131,7 @@ cacheDirectories:
   - node_modules
 ```
 
-Steps (or commands) that must run before the test execution are listed in the *pre* run step. In the example, the packages listed in *requirements.txt* are installed using the *npm install* command.
+Steps (or commands) that must run before the test execution are listed in the *pre* run step. In the example, the packages listed in *package.json* are installed using the *npm install* command.
 
 ```yaml
 pre:
@@ -159,10 +159,10 @@ HyperTest also facilitates the provision to download the artefacts on your local
 
 ## Test Execution
 
-The CLI option *--config* is used for providing the custom HyperTest YAML file (i.e. *HyperExecute-Yaml/.hyperTestMatrix.yaml*). Run the following command on the terminal to trigger the tests in test file Scenario on the HyperTest grid. 
+The CLI option *--config* is used for providing the custom HyperTest YAML file (i.e. *hyperExecuteMatrix.yaml*). Run the following command on the terminal to trigger the tests in test file Scenario on the HyperTest grid. 
 
 ```bash
-./concierge --config --verbose HyperExecute-Yaml/.hyperTestMatrix.yaml
+./concierge --config --verbose hyperExecuteMatrix.yaml
 ```
 
 Visit [HyperTest Automation Dashboard](https://automation.lambdatest.com/hypertest) to check the status of execution:
@@ -176,7 +176,7 @@ For more information about auto-split execution, check out the [Auto-Split Getti
 
 ### Core
 
-Auto-split YAML file (*HyperExecute-Yaml\.hypertestStatic.yaml*) in the repo contains the following configuration:
+Auto-split YAML file (*hypertestStatic.yaml*) in the repo contains the following configuration:
 
 ```yaml
 globalTimeout: 90
@@ -208,7 +208,7 @@ maxRetries: 2
 
 ## Pre Steps and Dependency Caching
 
-To leverage the advantage offered by *Dependency Caching* in HyperTest, the integrity of *package-lock.json* is checked using the checksum functionality.
+To leverage the advantage offered by *Dependency Caching* in HyperExecute, the integrity of *package-lock.json* is checked using the checksum functionality.
 
 ```yaml
 cacheKey: '{{ checksum "package-lock.json" }}'
@@ -252,7 +252,7 @@ testRunnerCommand: ./node_modules/.bin/nightwatch -e $test
 
 The *mergeArtifacts* directive (which is by default *false*) is set to *true* for merging the artefacts and combing artefacts generated under each task.
 
-The *uploadArtefacts* directive informs HyperTest to upload artefacts [files, reports, etc.] generated after task completion.  In the example, *path* consists of a regex for parsing the directory (i.e. *reports* that contains the test reports).
+The *uploadArtefacts* directive informs HyperExecute to upload artefacts [files, reports, etc.] generated after task completion.  In the example, *path* consists of a regex for parsing the directory (i.e. *reports* that contains the test reports).
 
 ```yaml
 mergeArtifacts: true
@@ -273,7 +273,7 @@ HyperTest also facilitates the provision to download the artefacts on your local
 The CLI option *--config* is used for providing the custom HyperTest YAML file (i.e. *HyperExecute-Yaml/.hypertestStatic.yaml*). Run the following command on the terminal to trigger the tests in Python files on the HyperTest grid. The *--download-artifacts* option is used to inform HyperTest to download the artefacts for the job.
 
 ```bash
-./concierge --config --verbose HyperExecute-Yaml/.hypertestStatic.yaml
+./concierge --config --verbose hypertestStatic.yaml
 ```
 ![image](https://user-images.githubusercontent.com/47247309/160447081-743a7763-da10-47ea-9679-41feadc404ae.png)
 
