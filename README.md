@@ -1,21 +1,21 @@
 <img height="100" alt="hypertest_logo" src="https://user-images.githubusercontent.com/1688653/159473714-384e60ba-d830-435e-a33f-730df3c3ebc6.png">
 
-HyperTest is a smart test orchestration platform to run end-to-end Selenium tests at the fastest speed possible. HyperTest lets you achieve an accelerated time to market by providing a test infrastructure that offers optimal speed, test orchestration, and detailed execution logs.
+HyperExecute is a smart test orchestration platform to run end-to-end Selenium tests at the fastest speed possible. HyperExecute lets you achieve an accelerated time to market by providing a test infrastructure that offers optimal speed, test orchestration, and detailed execution logs.
 
-The overall experience helps teams test code and fix issues at a much faster pace. HyperTest is configured using a YAML file. Instead of moving the Hub close to you, HyperTest brings the test scripts close to the Hub!
+The overall experience helps teams test code and fix issues at a much faster pace. HyperExecute is configured using a YAML file. Instead of moving the Hub close to you, HyperExecute brings the test scripts close to the Hub!
 
-* <b>HyperTest HomePage</b>: https://www.lambdatest.com/hypertest
+* <b>HyperExecute HomePage</b>: https://www.lambdatest.com/hypertest
 * <b>Lambdatest HomePage</b>: https://www.lambdatest.com
 * <b>LambdaTest Support</b>: [support@lambdatest.com](mailto:support@lambdatest.com)
 
-To know more about how HyperTest does intelligent Test Orchestration, do check out [HyperTest Getting Started Guide](https://www.lambdatest.com/support/docs/getting-started-with-hypertest/)
+To know more about how HyperExecute does intelligent Test Orchestration, do check out [HyperExecute Getting Started Guide](https://www.lambdatest.com/support/docs/getting-started-with-hypertest/)
 
-# How to run Selenium automation tests on HyperTest (using NightWatch framework)
+# How to run Selenium automation tests on HyperExecute (using NightWatch framework)
 
 * [Pre-requisites](#pre-requisites)
    - [Download Concierge](#download-concierge)
    - [Configure Environment Variables](#configure-environment-variables)
-   
+
 * [Matrix Execution with NightWatch](#matrix-execution-with-NightWatch)
    - [Core](#core)
    - [Pre Steps and Dependency Caching](#pre-steps-and-dependency-caching)
@@ -35,13 +35,13 @@ To know more about how HyperTest does intelligent Test Orchestration, do check o
 
 # Pre-requisites
 
-Before using HyperTest, you have to download Concierge CLI corresponding to the host OS. Along with it, you also need to export the environment variables *LT_USERNAME* and *LT_ACCESS_KEY* that are available in the [LambdaTest Profile](https://accounts.lambdatest.com/detail/profile) page.
+Before using HyperExecute, you have to download Concierge CLI corresponding to the host OS. Along with it, you also need to export the environment variables *LT_USERNAME* and *LT_ACCESS_KEY* that are available in the [LambdaTest Profile](https://accounts.lambdatest.com/detail/profile) page.
 
 ## Download Concierge
 
-Concierge is a CLI for interacting and running the tests on the HyperTest Grid. Concierge provides a host of other useful features that accelerate test execution. In order to trigger tests using Concierge, you need to download the Concierge binary corresponding to the platform (or OS) from where the tests are triggered:
+Concierge is a CLI for interacting and running the tests on the HyperExecute Grid. Concierge provides a host of other useful features that accelerate test execution. In order to trigger tests using Concierge, you need to download the Concierge binary corresponding to the platform (or OS) from where the tests are triggered:
 
-Also, it is recommended to download the binary in the project's parent directory. Shown below is the location from where you can download the Concierge binary: 
+Also, it is recommended to download the binary in the project's parent directory. Shown below is the location from where you can download the Concierge binary:
 
 * Mac: https://downloads.lambdatest.com/concierge/darwin/concierge
 * Linux: https://downloads.lambdatest.com/concierge/linux/concierge
@@ -74,9 +74,9 @@ set LT_ACCESS_KEY=LT_ACCESS_KEY
 
 # Matrix Execution with PyTest
 
-Matrix-based test execution is used for running the same tests across different test (or input) combinations. The Matrix directive in HyperTest YAML file is a *key:value* pair where value is an array of strings.
+Matrix-based test execution is used for running the same tests across different test (or input) combinations. The Matrix directive in HyperExecute YAML file is a *key:value* pair where value is an array of strings.
 
-Also, the *key:value* pairs are opaque strings for HyperTest. For more information about matrix multiplexing, check out the [Matrix Getting Started Guide](https://www.lambdatest.com/support/docs/getting-started-with-hypertest/#matrix-based-build-multiplexing)
+Also, the *key:value* pairs are opaque strings for HyperExecute. For more information about matrix multiplexing, check out the [Matrix Getting Started Guide](https://www.lambdatest.com/support/docs/getting-started-with-hypertest/#matrix-based-build-multiplexing)
 
 ### Core
 
@@ -90,13 +90,13 @@ testSuiteStep: 90
 
 Global timeout, testSuite timeout, and testSuite timeout are set to 90 minutes.
  
-The target platform is set to Windows. Please set the *[runson]* key to *[mac]* if the tests have to be executed on the macOS platform. 
+The target platform is set to Windows. Please set the *[runson]* key to *[mac]* if the tests have to be executed on the macOS platform.
 
 ```yaml
 runson: win
 ```
 
-Nightwatch nightwatch.json file contain the Browser Capabilities to run on the HyperTest grid. In the example, the NightWatch file *BrowserName* run in parallel on the basis of scenario by using the specified input combinations.
+Nightwatch nightwatch.json file contain the Browser Capabilities to run on the HyperExecute grid. In the example, the NightWatch file *BrowserName* run in parallel on the basis of scenario by using the specified input combinations.
 
 ```yaml
 matrix:
@@ -143,7 +143,7 @@ pre:
 
 The *mergeArtifacts* directive (which is by default *false*) is set to *true* for merging the artefacts and combing artefacts generated under each task.
 
-The *uploadArtefacts* directive informs HyperTest to upload artefacts [files, reports, etc.] generated after task completion. In the example, *path* consists of a regex for parsing the directory (i.e. *reports* that contains the test reports).
+The *uploadArtefacts* directive informs HyperExecute to upload artefacts [files, reports, etc.] generated after task completion. In the example, *path* consists of a regex for parsing the directory (i.e. *reports* that contains the test reports).
 
 ```yaml
 mergeArtifacts: true
@@ -155,17 +155,17 @@ uploadArtefacts:
   }]
 ```
 
-HyperTest also facilitates the provision to download the artefacts on your local machine. To download the artefacts, click on Artefacts button corresponding to the associated TestID.
+HyperExecute also facilitates the provision to download the artefacts on your local machine. To download the artefacts, click on Artefacts button corresponding to the associated TestID.
 
 ## Test Execution
 
-The CLI option *--config* is used for providing the custom HyperTest YAML file (i.e. *hyperExecuteMatrix.yaml*). Run the following command on the terminal to trigger the tests in test file Scenario on the HyperTest grid. 
+The CLI option *--config* is used for providing the custom HyperExecute YAML file (i.e. *hyperExecuteMatrix.yaml*). Run the following command on the terminal to trigger the tests in test file Scenario on the HyperExecute grid.
 
 ```bash
 ./concierge --config --verbose hyperExecuteMatrix.yaml
 ```
 
-Visit [HyperTest Automation Dashboard](https://automation.lambdatest.com/hypertest) to check the status of execution:
+Visit [HyperExecute Automation Dashboard](https://automation.lambdatest.com/hypertest) to check the status of execution:
 
 
 ## Auto-Split Execution with Webdriverio
@@ -196,9 +196,9 @@ Auto-split is set to true in the YAML file.
 
 ```yaml
  autosplit: true
-``` 
+```
 
-*retryOnFailure* is set to true, instructing HyperTest to retry failed command(s). The retry operation is carried out till the number of retries mentioned in *maxRetries* are exhausted or the command execution results in a *Pass*. In addition, the concurrency (i.e. number of parallel sessions) is set to 2.
+*retryOnFailure* is set to true, instructing HyperExecute to retry failed command(s). The retry operation is carried out till the number of retries mentioned in *maxRetries* are exhausted or the command execution results in a *Pass*. In addition, the concurrency (i.e. number of parallel sessions) is set to 2.
 
 ```yaml
 retryOnFailure: true
@@ -214,7 +214,7 @@ To leverage the advantage offered by *Dependency Caching* in HyperExecute, the i
 cacheKey: '{{ checksum "package-lock.json" }}'
 ```
 
-The caching advantage offered by *NPM* can be leveraged in HyperTest, whereby the downloaded packages can be stored (or cached) in a secure server for future executions. The packages available in the cache will only be used if the checksum stage results in a Pass.
+The caching advantage offered by *NPM* can be leveraged in HyperExecute, whereby the downloaded packages can be stored (or cached) in a secure server for future executions. The packages available in the cache will only be used if the checksum stage results in a Pass.
 
 
 
@@ -262,15 +262,15 @@ uploadArtefacts:
     "name": "Reports",
     "path": ["reports\\"]
   }]
-  
+
 ```
 ![image](https://user-images.githubusercontent.com/47247309/160446954-36c7de8e-0825-48e3-bf0b-e513a44921da.png)
 
-HyperTest also facilitates the provision to download the artefacts on your local machine. To download the artefacts, click on *Artefacts* button corresponding to the associated TestID.
+HyperExecute also facilitates the provision to download the artefacts on your local machine. To download the artefacts, click on *Artefacts* button corresponding to the associated TestID.
 
 ### Test Execution
 
-The CLI option *--config* is used for providing the custom HyperTest YAML file (i.e. *HyperExecute-Yaml/.hypertestStatic.yaml*). Run the following command on the terminal to trigger the tests in Python files on the HyperTest grid. The *--download-artifacts* option is used to inform HyperTest to download the artefacts for the job.
+The CLI option *--config* is used for providing the custom HyperExecute YAML file (i.e. *HyperExecute-Yaml/.hypertestStatic.yaml*). Run the following command on the terminal to trigger the tests in Python files on the HyperExecute grid. The *--download-artifacts* option is used to inform HyperExecute to download the artefacts for the job.
 
 ```bash
 ./concierge --config --verbose hypertestStatic.yaml
@@ -278,7 +278,7 @@ The CLI option *--config* is used for providing the custom HyperTest YAML file (
 ![image](https://user-images.githubusercontent.com/47247309/160447081-743a7763-da10-47ea-9679-41feadc404ae.png)
 
 
-Visit [HyperTest Automation Dashboard](https://automation.lambdatest.com/hypertest) to check the status of execution
+Visit [HyperExecute Automation Dashboard](https://automation.lambdatest.com/hypertest) to check the status of execution
 
 
 
@@ -296,11 +296,10 @@ env:
 
 ## Navigation in Automation Dashboard
 
-HyperTest lets you navigate from/to *Test Logs* in Automation Dashboard from/to *HyperTest Logs*. You also get relevant get relevant Selenium test details like video, network log, commands, Exceptions & more in the Dashboard. Effortlessly navigate from the automation dashboard to HyperTest logs (and vice-versa) to get more details of the test execution.
+HyperExecute lets you navigate from/to *Test Logs* in Automation Dashboard from/to *HyperExecute Logs*. You also get relevant get relevant Selenium test details like video, network log, commands, Exceptions & more in the Dashboard. Effortlessly navigate from the automation dashboard to HyperExecute logs (and vice-versa) to get more details of the test execution.
 
 
 ## We are here to help you :)
 * LambdaTest Support: [support@lambdatest.com](mailto:support@lambdatest.com)
-* HyperTest HomePage: https://www.lambdatest.com/support/docs/getting-started-with-hypertest/
+* HyperExecute HomePage: https://www.lambdatest.com/support/docs/getting-started-with-hypertest/
 * Lambdatest HomePage: https://www.lambdatest.com
-
