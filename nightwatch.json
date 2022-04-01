@@ -47,21 +47,21 @@
     },
     "chrome": {
       "desiredCapabilities": {
-        "platformName": "Windows 10",
+        "platformName": "windows 10",
         "browserName": "chrome",
         "browserVersion": "latest"
       }
     },
     "firefox": {
       "desiredCapabilities": {
-        "platformName": "Windows 10",
+        "platformName": "windows 10",
         "browserName": "firefox",
         "browserVersion": "latest"
       }
     },
     "edge": {
       "desiredCapabilities": {
-        "platformName": "Windows 10",
+        "platformName": "windows 10",
         "browserName": "MicrosoftEdge",
         "browserVersion": "latest"
       }
