@@ -168,7 +168,7 @@ The CLI option *--config* is used for providing the custom HyperExecute YAML fil
 Visit [HyperExecute Automation Dashboard](https://automation.lambdatest.com/hyperexecute) to check the status of execution:
 
 
-## Auto-Split Execution with Webdriverio
+## Auto-Split Execution with NightWatch
 
 Auto-split execution mechanism lets you run tests at predefined concurrency and distribute the tests over the available infrastructure. Concurrency can be achieved at different levels - file, module, test suite, test, scenario, etc.
 
