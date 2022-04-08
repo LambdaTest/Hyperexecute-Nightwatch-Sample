@@ -42,26 +42,24 @@
         "visual": true,
         "console": true,
         "network": true,
-        "enableCustomTranslation":true
+        "enableCustomTranslation":true,
+        "platformName":""
       }
     },
     "chrome": {
       "desiredCapabilities": {
-        "platformName": "windows 10",
         "browserName": "chrome",
         "browserVersion": "latest"
       }
     },
     "firefox": {
       "desiredCapabilities": {
-        "platformName": "windows 10",
         "browserName": "firefox",
         "browserVersion": "latest"
       }
     },
     "edge": {
       "desiredCapabilities": {
-        "platformName": "windows 10",
         "browserName": "MicrosoftEdge",
         "browserVersion": "latest"
       }
