@@ -38,12 +38,18 @@
       "access_key": "",
       "skip_testcases_on_fail": false,
       "desiredCapabilities": {
-        "build": "Nightwatch-Selenium-Sample-Hypertest",
-        "visual": true,
-        "console": true,
-        "network": true,
-        "enableCustomTranslation":true,
-        "platformName":""
+        "LT:Options": {
+          "build": "Nightwatch-Selenium-Sample-Hypertest",
+          "visual": true,
+          "project": "Untitled",
+          "console": true,
+          "network": true,
+          "enableCustomTranslation":true,
+          "platformName":"",
+          "selenium_version": "4.0.0",
+          "w3c": true,
+          "plugin": "node_js-nightwatch_js"
+          }
       }
     },
     "chrome": {

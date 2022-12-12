@@ -1,0 +1,30 @@
+version: 0.1
+globalTimeout: 90
+testSuiteTimeout: 90
+testSuiteStep: 90
+
+runson: ${matrix.os}
+
+retryOnFailure: true
+
+maxRetries: 1
+concurrency: 3
+  
+cacheKey: '{{ checksum "package-lock.json" }}'
+cacheDirectories:
+  - node_modules
+
+pre:
+  - npm install
+
+
+matrix:
+  os: [win]
+  version: ["latest"]
+  browser: ["chrome","firefox","edge"]
+  platform: ["win10"]
+
+testSuites:
+  - ./node_modules/.bin/nightwatch -e $browser
+    
+  
