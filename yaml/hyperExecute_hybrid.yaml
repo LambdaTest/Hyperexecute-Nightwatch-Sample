@@ -32,3 +32,5 @@ testRunnerCommand: ./node_modules/.bin/nightwatch -e $test
 env:
   LT_ACCESS_KEY: ${{.secrets.LT_ACCESS_KEY}}
   LT_USERNAME: LT_USERNAME
+
+jobLabel: [selenium-Nightwatch, hybrid, win, linux]

@@ -28,3 +28,4 @@ testRunnerCommand: ./node_modules/.bin/nightwatch -e $test
 
     
   
+jobLabel: [selenium-Nightwatch, win, autosplit]

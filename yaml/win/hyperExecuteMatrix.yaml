@@ -14,3 +14,5 @@ matrix:
 
 testSuites:
   - ./node_modules/.bin/nightwatch -e $browser
+
+jobLabel: [selenium-Nightwatch, win, matrix-simple]
