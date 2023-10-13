@@ -1,12 +1,17 @@
 version: 0.1
+globalTimeout: 90
+testSuiteTimeout: 90
+testSuiteStep: 90
+
 autosplit: true
+retryOnFailure: true
+parallelism:  1
+concurrency: 2
 
 matrix:
-  os: ["win","linux"]
+  os: ["win","linux", "mac"]
 
 runson: ${matrix.os}
-
-parallelism:  2
 
 cacheKey: '{{ checksum "package-lock.json" }}'
 cacheDirectories:
@@ -14,13 +19,11 @@ cacheDirectories:
 
 pre:
   - npm install
-post:
-  - ls  
 
-uploadArtefacts:
-
+mergeArtifacts: true
+uploadArtifacts:
   - name: Reports
-    path: 
+    path:
       - reports/
   
 testDiscovery:
@@ -29,8 +32,5 @@ testDiscovery:
   command: grep -B1 'desiredCapabilities' nightwatch.json | sed 's/-//g' | grep -vE 'desiredCapabilities' | grep -vE 'skip_testcases_on_fail' | awk '{print$1}' | sed 's/://g' | sed 's/"//g'
 
 testRunnerCommand: ./node_modules/.bin/nightwatch -e $test
-env:
-  LT_ACCESS_KEY: ${{.secrets.LT_ACCESS_KEY}}
-  LT_USERNAME: LT_USERNAME
 
-jobLabel: [selenium-Nightwatch, hybrid, win, linux]
+jobLabel: [selenium-Nightwatch, hybrid]
