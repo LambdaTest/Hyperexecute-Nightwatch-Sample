@@ -9,6 +9,7 @@ retryOnFailure: true
 
 maxRetries: 1
 concurrency: 3
+parallelism: 1
   
 cacheKey: '{{ checksum "package-lock.json" }}'
 cacheDirectories:
@@ -17,6 +18,11 @@ cacheDirectories:
 pre:
   - npm install
 
+mergeArtifacts: true
+uploadArtifacts:
+  - name: Reports
+    path:
+      - reports/
 
 matrix:
   os: [win]

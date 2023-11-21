@@ -3,7 +3,7 @@ globalTimeout: 90
 testSuiteTimeout: 90
 testSuiteStep: 90
 
-runson: linux
+runson: mac
 
 retryOnFailure: true
 
@@ -27,9 +27,9 @@ uploadArtifacts:
 matrix:
   version: ["latest"]
   browser: ["chrome","firefox","edge"]
-  platform: ["linux"]
+  platform: ["mac"]
 
 testSuites:
   - ./node_modules/.bin/nightwatch -e $browser
     
-jobLabel: [selenium-Nightwatch, linux, matrix]  
+jobLabel: [selenium-Nightwatch, mac, matrix]  

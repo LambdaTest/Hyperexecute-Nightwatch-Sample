@@ -3,7 +3,7 @@ globalTimeout: 90
 testSuiteTimeout: 90
 testSuiteStep: 90
 
-runson: linux
+runson: mac
 autosplit: true
 retryOnFailure: true
 
@@ -31,5 +31,5 @@ testDiscovery:
 
 testRunnerCommand: ./node_modules/.bin/nightwatch -e $test
 
-jobLabel: [selenium-Nightwatch, linux, autosplit]    
+jobLabel: [selenium-Nightwatch, mac, autosplit]    
   
