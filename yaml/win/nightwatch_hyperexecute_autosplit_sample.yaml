@@ -25,6 +25,12 @@ uploadArtifacts:
     path:
       - reports/
 
+report: true
+partialReports:
+    type: json
+    location: reports/
+    frameworkName: extent
+
 testDiscovery:
   type: raw
   mode: dynamic
