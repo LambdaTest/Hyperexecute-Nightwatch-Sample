@@ -24,6 +24,12 @@ uploadArtifacts:
     path:
       - reports/
 
+report: true
+partialReports:
+    type: json
+    location: reports/
+    frameworkName: extent
+
 matrix:
   os: [win]
   version: ["latest"]
