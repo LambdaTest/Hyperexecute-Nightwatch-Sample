@@ -13,10 +13,12 @@ pre:
 cacheKey: '{{ checksum "package-lock.json" }}'
 cacheDirectories:
   - node_modules
+
 testDiscovery:
   type: raw
   mode: static
-  command: grep -B1 'desiredCapabilities' nightwatch.json | sed 's/-//g' | grep -vE 'desiredCapabilities' | grep -vE 'skip_testcases_on_fail' | awk '{print$1}' | sed 's/://g' | sed 's/"//g'
+  command: node -e "const c = require('./nightwatch.conf.js'); console.log(Object.keys(c.test_settings).filter(k => ['chrome','firefox','edge'].includes(k)).join('\n'))"
+
 testRunnerCommand: ./node_modules/.bin/nightwatch -e $test
 
 uploadArtefacts:
@@ -27,6 +29,5 @@ uploadArtefacts:
 env:
   LT_ACCESS_KEY: ${{.secrets.LT_ACCESS_KEY}}
   LT_USERNAME: LT_USERNAME
-
 
 jobLabel: [selenium-Nightwatch, win, autosplit, static-discovery]

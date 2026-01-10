@@ -1,16 +1,17 @@
 {
-  "name": "nightwatch-js",
-  "version": "0.0.1",
-  "description": "NightWatch examples for LambdaTest",
+  "name": "nightwatch-js-hyperexecute",
+  "version": "1.0.0",
+  "description": "NightWatch 3.x examples for LambdaTest HyperExecute",
   "main": "",
   "scripts": {
-    "test": "./node_modules/.bin/nightwatch -e chrome tests"
+    "test": "nightwatch -e chrome tests",
+    "test:chrome": "nightwatch -e chrome tests",
+    "test:firefox": "nightwatch -e firefox tests",
+    "test:edge": "nightwatch -e edge tests",
+    "list-envs": "node -e \"const c = require('./nightwatch.conf.js'); console.log(Object.keys(c.test_settings).filter(k => ['chrome','firefox','edge','safari'].includes(k)).join('\\n'))\""
   },
   "dependencies": {
-    "@lambdatest/node-rest-client": "^1.0.0",
-    "nightwatch": "^2.0.10"
-  },
-  "devDependencies": {
-    "nightwatch-html-reporter": "^2.0.6"
+    "@lambdatest/node-rest-client": "^2.0.2",
+    "nightwatch": "^3.14.0"
   }
 }
