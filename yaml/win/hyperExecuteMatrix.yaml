@@ -1,11 +1,21 @@
+version: 0.1
 globalTimeout: 90
 testSuiteTimeout: 90
 testSuiteStep: 90
+
+runson: win
+
+cacheKey: '{{ checksum "package-lock.json" }}'
+cacheDirectories:
+  - node_modules
+
 env:
   LT_USERNAME: LT_USERNAME
   LT_ACCESS_KEY: LT_ACCESS_KEY
+
 pre: 
-      - hyper.bat  
+  - npm install
+
 matrix:
   os: [win]
   version: ["latest"]
