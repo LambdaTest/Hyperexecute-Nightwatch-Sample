@@ -11,7 +11,7 @@ cacheDirectories:
   - node_modules
 testDiscovery:
   type: raw
-  mode: dynamic
+  mode: remote
   command: node -e "const c = require('./nightwatch.conf.js'); console.log(Object.keys(c.test_settings).filter(k => ['chrome','firefox','edge'].includes(k)).join('\n'))"
 testRunnerCommand: ./node_modules/.bin/nightwatch -e $test
 
