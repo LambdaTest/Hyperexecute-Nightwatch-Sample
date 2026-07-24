@@ -1,15 +1,24 @@
 version: 0.1
+
+runtime:
+  language: node
+  version: "18.20.8"
+
 globalTimeout: 90
 testSuiteTimeout: 90
 testSuiteStep: 90
+
 retryOnFailure: true
 runson: win
 maxRetries: 2
 concurrency: 3
 autosplit: true
+
 pre:
+  - node -v
+  - npm -v
   - npm install
-  
+
 cacheKey: '{{ checksum "package-lock.json" }}'
 cacheDirectories:
   - node_modules
@@ -17,17 +26,16 @@ cacheDirectories:
 testDiscovery:
   type: raw
   mode: static
-  command: node -e "const c = require('./nightwatch.conf.js'); console.log(Object.keys(c.test_settings).filter(k => ['chrome','firefox','edge'].includes(k)).join('\n'))"
+  command: |
+    echo chrome
+    echo firefox
+    echo edge
 
 testRunnerCommand: ./node_modules/.bin/nightwatch -e $test
 
 uploadArtefacts:
   - name: Reports
-    path: 
+    path:
       - reports/
-  
-env:
-  LT_ACCESS_KEY: ${{.secrets.LT_ACCESS_KEY}}
-  LT_USERNAME: LT_USERNAME
 
 jobLabel: [selenium-Nightwatch, win, autosplit, static-discovery]

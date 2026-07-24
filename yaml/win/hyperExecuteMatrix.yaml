@@ -1,4 +1,9 @@
 version: 0.1
+
+runtime:
+  language: node
+  version: "18.20.8"
+
 globalTimeout: 90
 testSuiteTimeout: 90
 testSuiteStep: 90
@@ -9,17 +14,16 @@ cacheKey: '{{ checksum "package-lock.json" }}'
 cacheDirectories:
   - node_modules
 
-env:
-  LT_USERNAME: LT_USERNAME
-  LT_ACCESS_KEY: LT_ACCESS_KEY
 
-pre: 
+pre:
+  - node -v
+  - npm -v
   - npm install
 
 matrix:
   os: [win]
   version: ["latest"]
-  browser: ["chrome","firefox","edge"]
+  browser: ["chrome", "firefox", "edge"]
   platform: ["win10"]
 
 testSuites:
