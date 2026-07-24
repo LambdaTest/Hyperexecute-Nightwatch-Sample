@@ -1,4 +1,9 @@
 version: 0.1
+
+runtime:
+  language: node
+  version: "18.20.8"
+
 globalTimeout: 90
 testSuiteTimeout: 90
 testSuiteStep: 90
@@ -9,7 +14,7 @@ parallelism: 1
 concurrency: 2
 
 matrix:
-  os: ["win","linux", "mac"]
+  os: ["win", "linux", "mac"]
 
 runson: ${matrix.os}
 
@@ -18,25 +23,34 @@ cacheDirectories:
   - node_modules
 
 pre:
+  - node -v
+  - npm -v
   - npm install
 
 mergeArtifacts: true
+
 uploadArtifacts:
   - name: Reports
     path:
       - reports/
-  
+
 report: true
+
 partialReports:
-    type: json
-    location: reports/
-    frameworkName: extent
+  type: json
+  location: reports/
+  frameworkName: extent
 
 testDiscovery:
   type: raw
   mode: remote
-  command: node -e "const c = require('./nightwatch.conf.js'); console.log(Object.keys(c.test_settings).filter(k => ['chrome','firefox','edge'].includes(k)).join('\n'))"
+  command: |
+    echo chrome
+    echo firefox
+    echo edge
 
 testRunnerCommand: ./node_modules/.bin/nightwatch -e $test
 
-jobLabel: [selenium-Nightwatch, hybrid]
+jobLabel:
+  - selenium-Nightwatch
+  - hybrid

@@ -1,4 +1,9 @@
 version: 0.1
+
+runtime:
+  language: node
+  version: "18.20.8"
+
 globalTimeout: 90
 testSuiteTimeout: 90
 testSuiteStep: 90
@@ -10,33 +15,40 @@ retryOnFailure: true
 maxRetries: 1
 concurrency: 3
 parallelism: 1
-  
+
 cacheKey: '{{ checksum "package-lock.json" }}'
 cacheDirectories:
   - node_modules
 
 pre:
+  - node -v
+  - npm -v
   - npm install
 
 mergeArtifacts: true
+
 uploadArtifacts:
   - name: Reports
     path:
       - reports/
 
 report: true
+
 partialReports:
-    type: json
-    location: reports/
-    frameworkName: extent
+  type: json
+  location: reports/
+  frameworkName: extent
 
 matrix:
   os: [win]
   version: ["latest"]
-  browser: ["chrome","firefox","edge"]
+  browser: ["chrome", "firefox", "edge"]
   platform: ["win10"]
 
 testSuites:
   - ./node_modules/.bin/nightwatch -e $browser
-    
-jobLabel: [selenium-Nightwatch, win, matrix]
+
+jobLabel:
+  - selenium-Nightwatch
+  - win
+  - matrix
